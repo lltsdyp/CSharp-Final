@@ -120,4 +120,7 @@
   <data name="APIKey" xml:space="preserve">
     <value>sk-06073ad714b143829d36022210d03e33</value>
   </data>
+  <data name="ModelURL" xml:space="preserve">
+    <value>https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation</value>
+  </data>
 </root>

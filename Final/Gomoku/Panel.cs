@@ -1,6 +1,9 @@
 ﻿using Final.Control;
+using IGOEnchi.SmartGameLib;
+using IGOEnchi.SmartGameLib.io;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
@@ -41,6 +44,11 @@ namespace Final.Gomoku
             this.x = x;
             this.y = y;
         }
+
+        public override string ToString()
+        {
+            return ((char)(x + 'a')).ToString() + ((char)(y + 'a')).ToString();
+        }
     }
 
     /// <summary>
@@ -62,6 +70,8 @@ namespace Final.Gomoku
     public class Panel
     {
         public PointStatus[][] matrix;
+        // 使用sgf格式记录棋谱
+        public SgfBuilder recorder;
 
         public Panel()
         {
@@ -74,6 +84,16 @@ namespace Final.Gomoku
                     matrix[i][j] = PointStatus.NONE;
                 }
             }
+            recorder=new SgfBuilder();
+        }
+
+        public Panel(string pb,string pw):this()
+        {
+            recorder
+                .p("PB", pb)
+                .Next()
+                .p("PW", pw)
+                .Next();
         }
 
         /// <summary>
@@ -94,6 +114,7 @@ namespace Final.Gomoku
         /// <returns></returns>
         public PlaceStatus Place(PanelPoint point, PieceColor color)
         {
+            // 指定的位置不能放置棋子
             if (Index(point) != PointStatus.NONE)
             {
                 return PlaceStatus.FAIL;
@@ -105,6 +126,15 @@ namespace Final.Gomoku
                     PieceColor.BLACK => PointStatus.BLACK,
                     PieceColor.WHITE => PointStatus.WHITE,
                 };
+
+                //在棋谱中记录
+                recorder
+                    .p(color switch
+                    {
+                        PieceColor.BLACK => "B",
+                        PieceColor.WHITE => "W"
+                    }, point.ToString())
+                    .Next();
                 //胜利则返回WIN
                 return CheckWinFrom(point) switch
                 {
@@ -173,5 +203,17 @@ namespace Final.Gomoku
             }
             return false;
         }
+
+        public string ExportToSgf()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                SgfWriter writer = new SgfWriter(sw);
+                var tree=recorder.ToSgfTree();
+                writer.WriteSgfTree(tree);
+                return sw.ToString();
+            }
+        }
+
     }
 }

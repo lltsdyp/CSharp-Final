@@ -1,4 +1,5 @@
 ﻿using Final.Control;
+using System.Globalization;
 
 namespace Final
 {
@@ -88,6 +89,8 @@ namespace Final
             labelPlayerName.Text = playername;
             buttonGiveup.Enabled = true;
             buttonConfirm.Enabled = false;
+            comboBoxLevel.Enabled = false;
+            textBoxPlayerName.Enabled = false;
             labelGuide.Text = GameText.Wait_for_player;
         }
 
@@ -222,9 +225,14 @@ namespace Final
             buttonGiveup.Enabled = false;
             buttonConfirm.Enabled = true;
             comboBoxLevel.Enabled = true;
+            textBoxPlayerName.Enabled = true;
             FlushWindow();
             // 比赛状态变为不可用
 
+            string filename = @".\Records\棋谱" + DateTime.Now.ToString("yy-MM-dd-HH-mm-ss")+".sgf";
+            using FileStream file=new FileStream(filename, FileMode.Create);
+            using StreamWriter writer = new StreamWriter(file);
+            writer.Write(match.Panel.ExportToSgf());
             match.Dispose();
             match = null;
 

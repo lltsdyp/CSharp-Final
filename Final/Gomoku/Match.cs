@@ -33,7 +33,7 @@ namespace Final.Gomoku
         public Match(Player player,string progPath="./pbrain-pela.exe", PieceColor playerColor = PieceColor.BLACK)
         {
             this.Player = player;
-            Panel = new Panel();
+            Panel = new Panel(player.Name,"AI");
             this.playerColor = playerColor;
             this.AIManager=new GomokuManager.GomokuManager(progPath);
         }
@@ -82,7 +82,7 @@ namespace Final.Gomoku
                         {
                             newPoint = new PanelPoint(current.x + i, current.y + j);
                         }
-                        catch (ArgumentOutOfRangeException ex)
+                        catch (ArgumentOutOfRangeException)
                         {
                             continue;
                         }

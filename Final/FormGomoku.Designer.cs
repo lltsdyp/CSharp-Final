@@ -131,6 +131,7 @@
             // 
             // comboBoxLevel
             // 
+            comboBoxLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxLevel.FormattingEnabled = true;
             comboBoxLevel.Location = new Point(73, 219);
             comboBoxLevel.Name = "comboBoxLevel";
@@ -165,14 +166,14 @@
             textBoxPlayerName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             textBoxPlayerName.Location = new Point(1, 22);
             textBoxPlayerName.Name = "textBoxPlayerName";
-            textBoxPlayerName.Size = new Size(165, 23);
+            textBoxPlayerName.Size = new Size(193, 23);
             textBoxPlayerName.TabIndex = 1;
             textBoxPlayerName.Text = "新玩家";
             // 
             // buttonConfirm
             // 
             buttonConfirm.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonConfirm.Location = new Point(91, 45);
+            buttonConfirm.Location = new Point(119, 45);
             buttonConfirm.Name = "buttonConfirm";
             buttonConfirm.Size = new Size(75, 23);
             buttonConfirm.TabIndex = 4;

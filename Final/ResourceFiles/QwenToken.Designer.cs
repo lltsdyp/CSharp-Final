@@ -68,5 +68,14 @@ namespace Final {
                 return ResourceManager.GetString("APIKey", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation 的本地化字符串。
+        /// </summary>
+        internal static string ModelURL {
+            get {
+                return ResourceManager.GetString("ModelURL", resourceCulture);
+            }
+        }
     }
 }

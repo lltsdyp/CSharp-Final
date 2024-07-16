@@ -32,6 +32,11 @@ namespace Final
                 this.message = new PromptRequest();
         }
 
+        /// <summary>
+        /// 向Qwen发送提示词
+        /// </summary>
+        /// <param name="prompt">提示词</param>
+        /// <returns></returns>
         public async Task<string> sendPrompt(string prompt)
         {
             //初始化调用通义大模型的客户端

@@ -5,30 +5,32 @@ using System.Text;
 using System.Net.Http.Headers;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Sdcb.DashScope;
+using System.Resources;
 
 namespace Final
 {
     public partial class formMain : Form
     {
-        // DashscopeµÄURI
+        // Dashscopeçš„URI
         private const string uri = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation";
-        //apiÃÜÔ¿
-        private const string apikey = "sk-06073ad714b143829d36022210d03e33";//TODO: ¸ü¸ÄÎª´ÓÎÄ¼şÖĞ¶ÁÈ¡
+        //apiå¯†é’¥
+        private const string apikey = "sk-06073ad714b143829d36022210d03e33";//TODO: æ›´æ”¹ä¸ºä»æ–‡ä»¶ä¸­è¯»å–
         private QwenClient client;
+        private ResourceManager pictureResources;
         public formMain()
         {
             InitializeComponent();
+            pictureResources = new ResourceManager("Final.Pictures",typeof(formMain).Assembly);
         }
 
-        // ¼àÌı°´Å¥±»°´ÏÂµÄÊÂ¼ş
+        // ç›‘å¬æŒ‰é’®è¢«æŒ‰ä¸‹çš„äº‹ä»¶
         private async void button_Click(object sender, EventArgs e)
         {
-            // È·¶¨µã»÷µÄ°´Å¥
+            // ç¡®å®šç‚¹å‡»çš„æŒ‰é’®
             Button playerbtn = (Button)sender;
             if (playerbtn.BackColor != Color.White)
             {
-                labelTurn.Text = "ÇëÑ¡Ôñ¿ÉÂä×ÓµÄÎ»ÖÃ";
+                labelTurn.Text = "è¯·é€‰æ‹©å¯è½å­çš„ä½ç½®";
                 return;
             }
             var position = tableLayoutPanel1.GetPositionFromControl(playerbtn);
@@ -36,34 +38,40 @@ namespace Final
             int y = position.Column;
             playerbtn.BackColor = Color.Blue;
 
-            // ÈÃAIÑ¡ÔñÏÂÆåÎ»ÖÃ
+            // è®©AIé€‰æ‹©ä¸‹æ£‹ä½ç½®
             Button aibtn;
-            labelTurn.Text = "µÈ´ı¶ÔÊÖ";
+            labelTurn.Text = "ç­‰å¾…å¯¹æ‰‹";
             bool isFirstAsk = true;
             do
             {
                 string respond;
-                if (isFirstAsk){
-                    isFirstAsk= false;
+                if (isFirstAsk)
+                {
+                    isFirstAsk = false;
                     respond = await client.sendPrompt($"({x},{y})");
                 }
                 else
-                    respond = await client.sendPrompt("·ÇÓĞĞ§Î»ÖÃ£¬ÇëÖØĞÂÑ¡Ôñ");
-                if (respond.Contains("ÓÎÏ·½áÊø"))
+                    respond = await client.sendPrompt("éæœ‰æ•ˆä½ç½®ï¼Œè¯·é‡æ–°é€‰æ‹©");
+                if (respond.Contains("æ¸¸æˆç»“æŸ"))
                     return;
                 labelTurn.Text = respond;
                 aibtn = (Button)tableLayoutPanel1.GetControlFromPosition(respond[3] - '0', respond[1] - '0');
-            } while (aibtn==null||aibtn.BackColor != Color.White);
+            } while (aibtn == null || aibtn.BackColor != Color.White);
             aibtn.BackColor = Color.Red;
-            labelTurn.Text = "ÄãµÄ»ØºÏ";
+            labelTurn.Text = "ä½ çš„å›åˆ";
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // ³õÊ¼»¯
-            labelTurn.Text = "ÄãµÄ»ØºÏ";
-            string initialPrompt = "ÎÒÃÇÀ´ÏÂ¾®×ÖÆå°É£¬Ã¿¸öÈËÓÃ£¨x,y£©µÄ×ø±êÀ´±íÊ¾Âä×ÓµÄÎ»ÖÃ£¬ÎÒÏÈÀ´£¬Çë×¢Òâ£¬ÄãµÄ»Ø´ğÖ»ÄÜÊÇ(x,y)µÄ¸ñÊ½£¬¶ø²»ÒªÓĞ¶àÓàµÄÄÚÈİ£¬¶øÇÒx,yµÄÈ¡Öµ¾ùÖ»ÄÜÎª0£¬1£¬2";
+            // åˆå§‹åŒ–
+            labelTurn.Text = "ä½ çš„å›åˆ";
+            string initialPrompt = "æˆ‘ä»¬æ¥ä¸‹äº•å­—æ£‹å§ï¼Œæ¯ä¸ªäººç”¨ï¼ˆx,yï¼‰çš„åæ ‡æ¥è¡¨ç¤ºè½å­çš„ä½ç½®ï¼Œæˆ‘å…ˆæ¥ï¼Œè¯·æ³¨æ„ï¼Œä½ çš„å›ç­”åªèƒ½æ˜¯(x,y)çš„æ ¼å¼ï¼Œè€Œä¸è¦æœ‰å¤šä½™çš„å†…å®¹ï¼Œè€Œä¸”x,yçš„å–å€¼å‡åªèƒ½ä¸º0ï¼Œ1ï¼Œ2";
             client = new QwenClient(apikey, initialPrompt);
+        }
+
+        private void panel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

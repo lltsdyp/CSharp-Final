@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Final
 {
+    /// <summary>
+    /// 请求格式的数据类，最终转化为json格式
+    /// </summary>
     public class PromptRequest
     {
         public readonly string model;
@@ -62,18 +65,7 @@ namespace Final
 
         public Message(Role role, string content)
         {
-            switch(role)
-            {
-                case Role.SYSTEM:
-                    this.role = "system";
-                    break;
-                case Role.USER:
-                    this.role = "user";
-                    break;
-                case Role.ASSISTANT:
-                    this.role = "assistant";
-                    break;
-            }
+            this.role = role.ToString().ToLower();
             this.content = content;
         }
     }

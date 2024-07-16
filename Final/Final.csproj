@@ -9,8 +9,72 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Sdcb.DashScope" Version="1.0.1" />
+    <Compile Remove="GomokuAIProg\**" />
+    <EmbeddedResource Remove="GomokuAIProg\**" />
+    <None Remove="GomokuAIProg\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceFiles\AIPrograms.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AIPrograms.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceFiles\GamePictures.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GamePictures.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceFiles\GameText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GameText.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceFiles\QwenToken.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QwenToken.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceFiles\AIPrograms.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AIPrograms.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Final</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceFiles\GamePictures.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GamePictures.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Final</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceFiles\GameText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GameText.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Final</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceFiles\QwenToken.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>QwenToken.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Final</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(ProjectDir)GomokuAIProgs\  $(ProjectDir)$(OutDir)GomokuAIProgs\ /E /I /Y" />
+  </Target>
 
 </Project>

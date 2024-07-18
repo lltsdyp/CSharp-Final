@@ -79,5 +79,13 @@ namespace Final
                 }
             }
         }
+
+        /// <summary>
+        /// 清除记录
+        /// </summary>
+        public void CleanMessage()
+        {
+            message.input.messages = new List<Message>();
+        }
     }
 }

@@ -73,6 +73,9 @@ namespace Final.Gomoku
         // 使用sgf格式记录棋谱
         public SgfBuilder recorder;
 
+        // 原图中Block的边长（像素）
+        public const int BlockSize = 50;
+
         public Panel()
         {
             matrix = new PointStatus[15][];

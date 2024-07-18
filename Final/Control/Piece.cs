@@ -31,8 +31,6 @@ namespace Final.Control
             // 首次使用需初始化
             if (black == null || white == null)
             {
-                ResourceManager pictureLoader =
-                    new ResourceManager("Final.Pictures", typeof(Piece).Assembly);
                 black = GamePictures.BlackPiece;
                 white = GamePictures.WhitePiece;
                 pieceSize = black!.Size.Width;

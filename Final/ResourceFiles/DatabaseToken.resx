@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DatabaseName" xml:space="preserve">
+    <value>Gomoku</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>20710A13-DBB9-A03D-260C-690935DA9755</value>
+  </data>
+  <data name="ServerName" xml:space="preserve">
+    <value>jizimo208a.tpddns.cn</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>GomokuGame</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>GomokuManager</value>
+  </data>
 </root>

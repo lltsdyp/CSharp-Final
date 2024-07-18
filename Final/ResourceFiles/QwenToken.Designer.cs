@@ -70,6 +70,16 @@ namespace Final {
         }
         
         /// <summary>
+        ///   查找类似 你是一位解说员，请你评论一下下面以sgf格式提供的五子棋棋局{0}
+        ///{1}方获胜 的本地化字符串。
+        /// </summary>
+        internal static string ContactAI {
+            get {
+                return ResourceManager.GetString("ContactAI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation 的本地化字符串。
         /// </summary>
         internal static string ModelURL {

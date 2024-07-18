@@ -120,6 +120,10 @@
   <data name="APIKey" xml:space="preserve">
     <value>sk-06073ad714b143829d36022210d03e33</value>
   </data>
+  <data name="ContactAI" xml:space="preserve">
+    <value>你是一位解说员，请你评论一下下面以sgf格式提供的五子棋棋局{0}
+{1}方获胜</value>
+  </data>
   <data name="ModelURL" xml:space="preserve">
     <value>https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation</value>
   </data>

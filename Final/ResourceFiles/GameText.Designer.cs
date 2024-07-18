@@ -70,6 +70,15 @@ namespace Final {
         }
         
         /// <summary>
+        ///   查找类似 正在生成AI分析，请稍等 的本地化字符串。
+        /// </summary>
+        internal static string Wait_for_comment {
+            get {
+                return ResourceManager.GetString("Wait for comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 你的回合 的本地化字符串。
         /// </summary>
         internal static string Wait_for_player {

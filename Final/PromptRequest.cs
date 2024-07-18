@@ -13,8 +13,8 @@ namespace Final
     /// </summary>
     public class PromptRequest
     {
-        public readonly string model;
-        public readonly Input input;
+        public string model;
+        public Input input;
         public PromptRequest()
         {
             this.model = "qwen-max";

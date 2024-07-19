@@ -37,27 +37,27 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 42);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(48, 77);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(56, 17);
+            label1.Size = new Size(110, 31);
             label1.TabIndex = 0;
             label1.Text = "新名称：";
             // 
             // textBoxNewName
             // 
-            textBoxNewName.Location = new Point(24, 81);
-            textBoxNewName.Margin = new Padding(2);
+            textBoxNewName.Location = new Point(48, 148);
+            textBoxNewName.Margin = new Padding(4, 4, 4, 4);
             textBoxNewName.Name = "textBoxNewName";
-            textBoxNewName.Size = new Size(302, 23);
+            textBoxNewName.Size = new Size(600, 38);
             textBoxNewName.TabIndex = 1;
             // 
             // buttonConfirm
             // 
-            buttonConfirm.Location = new Point(24, 128);
-            buttonConfirm.Margin = new Padding(2);
+            buttonConfirm.Location = new Point(48, 233);
+            buttonConfirm.Margin = new Padding(4, 4, 4, 4);
             buttonConfirm.Name = "buttonConfirm";
-            buttonConfirm.Size = new Size(75, 25);
+            buttonConfirm.Size = new Size(150, 46);
             buttonConfirm.TabIndex = 2;
             buttonConfirm.Text = "确认";
             buttonConfirm.UseVisualStyleBackColor = true;
@@ -65,10 +65,10 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(249, 128);
-            buttonCancel.Margin = new Padding(2);
+            buttonCancel.Location = new Point(498, 233);
+            buttonCancel.Margin = new Padding(4, 4, 4, 4);
             buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(75, 25);
+            buttonCancel.Size = new Size(150, 46);
             buttonCancel.TabIndex = 3;
             buttonCancel.Text = "取消";
             buttonCancel.UseVisualStyleBackColor = true;
@@ -76,16 +76,16 @@
             // 
             // FormRename
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(14F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(350, 180);
+            ClientSize = new Size(700, 328);
             Controls.Add(buttonCancel);
             Controls.Add(buttonConfirm);
             Controls.Add(textBoxNewName);
             Controls.Add(label1);
-            Margin = new Padding(2);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "FormRename";
-            Text = "FormRename";
+            Text = "重命名";
             Load += FormRename_Load;
             ResumeLayout(false);
             PerformLayout();

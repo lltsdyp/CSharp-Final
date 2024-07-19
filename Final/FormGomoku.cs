@@ -3,6 +3,7 @@ using Final.Database;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace Final
@@ -67,6 +68,7 @@ namespace Final
             tokenSource = new CancellationTokenSource();
             AItasks = new List<Task>();
             InitializeComponent();
+
         }
 
         /// <summary>
@@ -176,7 +178,7 @@ namespace Final
             match = null;
 
             // AI操作所需时间较长，创建线程以避免阻塞当前应用
-            await Task.Run(async () => 
+            await Task.Run(async () =>
             {
                 Task task = AIAnalysisAsync(sgf, index switch
                 {
@@ -201,7 +203,6 @@ namespace Final
 
         private async Task UpdateListBox()
         {
-            comboBoxLevel.SelectedIndex = 0;
             listBoxHistory.DataSource = await database.GetNameListAsync();
             listBoxHistory.SelectionMode = SelectionMode.One;
             FlushWindow();
@@ -224,6 +225,7 @@ namespace Final
                 buttonExport.Enabled = false;
                 buttonOpen.Enabled = false;
             }
+            comboBoxLevel.SelectedIndex = 1;
         }
         private void pictureBoxGobangPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -357,7 +359,7 @@ namespace Final
             (string sgfContent, string comment) = (await database.LoadGameHistoryAsync(selectedGame)).Value;
 
             // 显示历史对局
-            var historyAnalysis = new FormHistory(sgfContent, comment);
+            var historyAnalysis = new FormHistory(listBoxHistory.Text,sgfContent, comment);
             historyAnalysis.ShowDialog();
         }
 
@@ -368,10 +370,10 @@ namespace Final
 
         private async void RenameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string oldName=listBoxHistory.Text;
-            var renameDialog=new FormRename(oldName);
-            var result=renameDialog.ShowDialog();
-            if (result==DialogResult.OK)
+            string oldName = listBoxHistory.Text;
+            var renameDialog = new FormRename(oldName);
+            var result = renameDialog.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 string newName = renameDialog.NewName;
                 await database.RenameRecordAsync(oldName, newName);
@@ -383,6 +385,19 @@ namespace Final
         {
             await database.RemoveGameHistory(listBoxHistory.Text);
             await UpdateListBox();
+        }
+
+        private void listBoxHistory_MouseDown(object sender, MouseEventArgs e)
+        {
+            // 获取点击位置并找到最近的项
+            Point mousePoint = listBoxHistory.PointToClient(Cursor.Position);
+            int index = listBoxHistory.IndexFromPoint(mousePoint);
+
+            // 如果索引有效，则更改选中项
+            if (index >= 0 && index < listBoxHistory.Items.Count)
+            {
+                listBoxHistory.SelectedIndex = index;
+            }
         }
     }
 }

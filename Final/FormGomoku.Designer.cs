@@ -139,10 +139,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 452);
+            label3.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            label3.Location = new Point(-1, 449);
             label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
-            label3.Size = new Size(134, 31);
+            label3.Size = new Size(157, 37);
             label3.TabIndex = 12;
             label3.Text = "历史棋谱：";
             // 
@@ -212,11 +213,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label2.Location = new Point(0, 399);
+            label2.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            label2.Location = new Point(-1, 401);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(136, 50);
+            label2.Size = new Size(101, 37);
             label2.TabIndex = 8;
             label2.Text = "难度：";
             // 
@@ -224,7 +225,7 @@
             // 
             comboBoxLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxLevel.FormattingEnabled = true;
-            comboBoxLevel.Location = new Point(146, 399);
+            comboBoxLevel.Location = new Point(122, 398);
             comboBoxLevel.Margin = new Padding(6, 5, 6, 5);
             comboBoxLevel.Name = "comboBoxLevel";
             comboBoxLevel.Size = new Size(280, 39);

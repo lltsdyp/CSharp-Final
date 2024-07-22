@@ -38,6 +38,7 @@ namespace Final
 
         private void FormHistory_Load(object sender, EventArgs e)
         {
+            Piece _ = new Piece(PieceColor.BLACK);
             UpdateWebView();
             this.Invalidate();
             this.Update();

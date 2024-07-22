@@ -97,7 +97,7 @@
             tableLayoutPanelVertical.ColumnCount = 1;
             tableLayoutPanelVertical.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelVertical.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelVertical.Location = new Point(626, 0);
+            tableLayoutPanelVertical.Location = new Point(586, 0);
             tableLayoutPanelVertical.Name = "tableLayoutPanelVertical";
             tableLayoutPanelVertical.RowCount = 15;
             tableLayoutPanelVertical.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));

@@ -51,11 +51,6 @@ namespace Final
         /// </summary>
         private void DrawPiecesFromSgf()
         {
-            // 首先计算在图像中，棋子到图像左上方的距离（像素）
-            // 棋盘四周的留白大小（像素）
-            // 该函数用于计算以像素表示的坐标位置
-            var PanelPointToPixel = (int x) => (int)((padding + x * Gomoku.Panel.BlockSize - Piece.PieceSize / 2) * scale);
-
             using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(sgfContent)))
             {
                 var tree = SgfReader.LoadFromStream(stream);
@@ -72,22 +67,15 @@ namespace Final
                 {
                     // 形如ab的坐标简略表示
                     string posAbbr = tree.Properties[0].Value;
-                    // 转化成具体的坐标
-                    var point = new Point
-                        (
-                        x: PanelPointToPixel(posAbbr[0] - 'a')
-                         + (int)(pictureBoxPanel.Width - GamePictures.Panel.Width * scale) / 2,
-                        y: PanelPointToPixel(posAbbr[1] - 'a')
-                         + (int)(pictureBoxPanel.Height - GamePictures.Panel.Height * scale) / 2
-                        );
 
-                    // 计算出坐标后传递给负责绘图的函数
+                    // 传递给负责绘图的函数
                     DrawPiecesFromPanelPoint(tree.Properties[0].Name switch
                     {
                         "B" => PieceColor.BLACK,
                         "W" => PieceColor.WHITE
                     },
-                    point);
+                    posAbbr);
+
 
                     moveForward();
                 }
@@ -99,11 +87,26 @@ namespace Final
         /// </summary>
         /// <param name="color">棋子的颜色</param>
         /// <param name="point">棋子在棋盘上的坐标</param>
-        private void DrawPiecesFromPanelPoint(PieceColor color, Point point)
+        private void DrawPiecesFromPanelPoint(PieceColor color, string posAbbr)
         {
+            // 首先计算在图像中，棋子到图像左上方的距离（像素）
+            // 棋盘四周的留白大小（像素）
+            // 该函数用于计算以像素表示的坐标位置
+            var PanelPointToPixel = (int x) => (int)((padding + x * Gomoku.Panel.BlockSize - Piece.PieceSize / 2) * scale);
+            // 转化成具体的坐标
+            var point = new Point
+                (
+                x: PanelPointToPixel(posAbbr[0] - 'a')
+                 + (int)(pictureBoxPanel.Width - GamePictures.Panel.Width * scale) / 2,
+                y: PanelPointToPixel(posAbbr[1] - 'a')
+                 + (int)(pictureBoxPanel.Height - GamePictures.Panel.Height * scale) / 2
+                );
             var piece = new Piece(color);
             piece.Location = point;
             pictureBoxPanel.Controls.Add(piece);
+
+            // 设置ToolTips
+            piecePosition.SetToolTip(piece, posAbbr);
         }
 
         /// <summary>

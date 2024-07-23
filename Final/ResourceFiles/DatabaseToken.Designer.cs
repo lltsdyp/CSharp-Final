@@ -79,7 +79,7 @@ namespace Final {
         }
         
         /// <summary>
-        ///   查找类似 jizimo208a.tpddns.cn 的本地化字符串。
+        ///   查找类似 127.0.0.1 的本地化字符串。
         /// </summary>
         internal static string ServerName {
             get {

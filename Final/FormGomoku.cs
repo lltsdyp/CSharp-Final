@@ -165,7 +165,7 @@ namespace Final
             buttonGiveup.Enabled = false;
             buttonConfirm.Enabled = true;
             comboBoxLevel.Enabled = true;
-            textBoxPlayerName.Enabled = true;
+            textBoxPlayerName.ReadOnly = true;
             listBoxHistory.Enabled = true;
             buttonOpen.Enabled = true;
             buttonExport.Enabled = true;
@@ -289,7 +289,7 @@ namespace Final
             buttonGiveup.Enabled = true;
             buttonConfirm.Enabled = false;
             comboBoxLevel.Enabled = false;
-            textBoxPlayerName.Enabled = false;
+            textBoxPlayerName.ReadOnly = false;
             listBoxHistory.Enabled = false;
             buttonOpen.Enabled = false;
             buttonExport.Enabled = false;

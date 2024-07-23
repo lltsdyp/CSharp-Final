@@ -29,7 +29,7 @@ namespace Final
             InitializeComponent();
         }
 
-        public FormHistory(string name,string sgfContent, string comment) : this()
+        public FormHistory(string name, string sgfContent, string comment) : this()
         {
             this.Text = "对弈记录 - " + name;
             this.comment = comment;
@@ -181,6 +181,22 @@ namespace Final
 
         private void pictureBoxPanel_MouseLeave(object sender, EventArgs e)
         {
+            // 设置判定的ClientRectangle比pictureBoxPanel自身的ClientRectangle小一点，便于检测
+            Rectangle checkRectangle = new Rectangle
+            {
+                X = this.pictureBoxPanel.ClientRectangle.X+ 40
+                    + (this.pictureBoxPanel.Width - this.pictureBoxPanel.Height) / 2,
+                Y = this.pictureBoxPanel.ClientRectangle.Y+40,
+                Width = this.pictureBoxPanel.ClientRectangle.Height - 40,
+                Height = this.pictureBoxPanel.ClientRectangle.Height - 40
+            };
+            var _location = pictureBoxPanel.PointToClient(Cursor.Position);
+            // 仍在控件内，不触发事件处理
+            if (_location != Point.Empty &&
+                checkRectangle.Contains(_location))
+            {
+                return;
+            }
             tableLayoutPanelHorizonal.Visible
                 = tableLayoutPanelVertical.Visible
                 = false;

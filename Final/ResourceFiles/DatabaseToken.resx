@@ -124,7 +124,7 @@
     <value>20710A13-DBB9-A03D-260C-690935DA9755</value>
   </data>
   <data name="ServerName" xml:space="preserve">
-    <value>jizimo208a.tpddns.cn</value>
+    <value>127.0.0.1</value>
   </data>
   <data name="TableName" xml:space="preserve">
     <value>GomokuGame</value>
